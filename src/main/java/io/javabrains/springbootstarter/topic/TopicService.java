@@ -29,13 +29,27 @@ public class TopicService {
     }
 
     public void updateTopic(String id, Topic topic) {
+        for(int i = 0; i < topics.size(); i++){
+            Topic t = topics.get(i);
+            if(t.getId().equals(id)){
+                topics.set(i, topic);
+                return;
+            }
+        }
+//        IntStream.range(0, topics.size()).filter(i -> topics.get(i).getId().equals(id));
+//        System.out.println(IntStream.range(0, topics.size()).filter(i -> topics.get(i).getId().equals(id)).findFirst());
+    }
+
+    public void deleteTopic(String id) {
+
+        topics.removeIf(topic -> topic.getId().equals(id));
+
 //        for(int i = 0; i < topics.size(); i++){
 //            Topic t = topics.get(i);
 //            if(t.getId().equals(id)){
-//                topics.set(i, topic);
+//                topics.remove(i);
 //                return;
 //            }
 //        }
-        IntStream.range(0, topics.size()).filter(i -> topics.get(i).getId().equals(id));
     }
 }
